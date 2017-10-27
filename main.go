@@ -37,9 +37,9 @@ func main() {
 
 	//website.Site()
 
-	rcmds["ping"] = Cmds{comandos.Ping, 0, false}
-	rcmds["play"] = Cmds{comandos.Play, 0, true}
-	rcmds["playlist"] = Cmds{comandos.Playlist, 0, true}
+	rcmds["ping"] = Cmds{commands.Ping, 0, false}
+	rcmds["play"] = Cmds{commands.Play, 0, true}
+	rcmds["playlist"] = Cmds{commands.Playlist, 0, true}
 
 	if err != nil {
 		panic(err)
@@ -58,7 +58,7 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 	replace := strings.Replace(m.Content, "!", "", -1)
 	if strings.HasPrefix(replace,"<@"+s.State.User.ID+">") && strings.Replace(replace, "<@"+s.State.User.ID+">", "", -1) != ""{
 			s.ChannelTyping(m.ChannelID)
-			s.ChannelMessageSend(m.ChannelID, "<@"+m.Author.ID+">, " + modulos.Cleverbot(m.Content, m.Author.ID))
+			s.ChannelMessageSend(m.ChannelID, "<@"+m.Author.ID+">, " + modules.Cleverbot(m.Content, m.Author.ID))
 	}
 
 	if strings.HasPrefix(m.Content, prefix) {
